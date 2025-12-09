@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Signature Look — Shop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="header">
+    <div class="logo">Signature Look</div>
+    <div class="nav">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="wishlist.html" class="icon-link">❤️ <span id="wishCount" class="count-badge">0</span></a>
+      <a href="cart.html" class="icon-link">🛒 <span id="cartCount" class="count-badge">0</span></a>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Our Products</h2>
+    <div class="grid" id="productGrid">
+      <!-- Products will be inserted here dynamically -->
+    </div>
+  </div>
+
+  <div class="footer">
+    © 2025 Signature Look — All Rights Reserved
+  </div>
+
+  <script>
+    // Define your products in one place
+    const products = [
+      {img: "img/img13.jpeg", name: "World Map with airline", price: 1299},
+      {img: "img/img.jpeg", name: "Hoddies Design", price: 1499},
+      {img: "img/img3.jpeg", name: "Mini Birds", price: 1599},
+      {img: "img1.jpeg", name: "World Map with airline", price: 1399},
+      {img: "img/img5.jpeg", name: "sprrow", price: 1699},
+      {img: "img/img6.jpeg", name: "Birds", price: 1199},
+       {img: "img/img7.jpeg", name: "Horse", price: 1199},
+        {img: "img/img8.jpeg", name: "Deer Motif", price: 1199},
+         {img: "img/img9.jpeg", name: "Design With cards", price: 1199},
+       {img: "img/img10.jpeg", name: "Desert Yellow 06", price: 1199},
+        {img: "img/img11.jpeg", name: "Blace cat", price: 1199} ,
+         {img: "img/img12.jpeg", name: "Tree", price: 1199}  
+    ];
+
+    const grid = document.getElementById("productGrid");
+
+    products.forEach(product => {
+      const card = document.createElement("div");
+      card.className = "card";
+
+      card.innerHTML = `
+        <img src="${product.img}" alt="${product.name}">
+        <h3>${product.name}</h3>
+        <p class="price">₹${product.price}</p>
+        <a href="product.html?img=${encodeURIComponent(product.img)}&name=${encodeURIComponent(product.name)}&price=${product.price}">
+          <button class="btn">View</button>
+        </a>
+      `;
+      grid.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>

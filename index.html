@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Signature Look — Home</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Navigation active link */
+    .nav a.active {
+      color: #ff6600;
+      font-weight: bold;
+    }
+
+    /* Hero section */
+    .hero {
+      position: relative;
+      text-align: center;
+      color: white;
+      margin-bottom: 40px;
+    }
+
+    .hero img {
+      width: 100%;
+      max-height: 500px;
+      object-fit: cover;
+      filter: brightness(70%);
+    }
+
+    .hero-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .hero-text h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .hero-text p {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      font-size: 1rem;
+      background-color: #ff6600;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background-color: #e05500;
+    }
+
+    /* Featured products section */
+    .featured-products {
+      max-width: 1200px;
+      margin: 0 auto 40px;
+      text-align: center;
+    }
+
+    .featured-products h2 {
+      margin-bottom: 20px;
+    }
+
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      width: 200px;
+      text-align: center;
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      margin: 10px 0 5px;
+    }
+
+    .card .price {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .look{
+      text-align: center;
+      margin-bottom: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <div class="logo">Signature Look</div>
+    <div class="nav">
+      <a href="index.html" class="active">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="wishlist.html" class="icon-link">❤️ <span id="wishCount" class="count-badge">0</span></a>
+      <a href="cart.html" class="icon-link">🛒 <span id="cartCount" class="count-badge">0</span></a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <img src="img/logo.jpg" alt="Signature Look Banner">
+    <div class="hero-text">
+      <h1>Welcome to Signature Look</h1>
+      <p>Your style, your attitude.</p><br><br>
+      
+    </div>
+  </div>
+
+  <!-- Featured Products Section -->
+  <div class="featured-products">
+    <h2>Featured Products</h2><br>
+    <div class="grid" id="featuredGrid">
+      <!-- Products will be inserted dynamically -->
+    </div>
+  </div>
+  <div class="look">
+  <a href="shop.html" class="btn">Shop Now</a>
+</div>
+  <div class="footer">
+    © 2025 Signature Look — All Rights Reserved
+  </div>
+
+  <script>
+    // Featured products list
+    const featuredProducts = [
+      {img: "img/img1.jpeg", name: "Sea White 01", price: 1299},
+      {img: "img/img.jpeg", name: "Ocean Blue 02", price: 1499},
+      {img: "img/img3.jpeg", name: "Sunset Red 03", price: 1599},
+      {img: "img/img4.jpeg", name: "Forest Green 04", price: 1399},       
+      {img: "img/img4.jpeg", name: "Forest Green 04", price: 1399},
+      {img: "img/img4.jpeg", name: "Forest Green 04", price: 1399},
+      {img: "img/img4.jpeg", name: "Forest Green 04", price: 1399},
+      {img: "img/img4.jpeg", name: "Forest Green 04", price: 1399}
+
+    ];
+
+    const grid = document.getElementById("featuredGrid");
+
+    featuredProducts.forEach(product => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <img src="${product.img}" alt="${product.name}">
+        <h3>${product.name}</h3>
+        <p class="price">₹${product.price}</p>
+        <a href="product.html?img=${encodeURIComponent(product.img)}&name=${encodeURIComponent(product.name)}&price=${product.price}" class="btn">View</a>
+      `;
+      grid.appendChild(card);
+    });
+  </script>
+   
+</body>
+</html>

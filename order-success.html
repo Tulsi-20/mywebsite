@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Successful — Signature Look</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .success-box {
+      max-width: 600px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 30px;
+      text-align: center;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+    }
+
+    .order-id {
+      font-size: 22px;
+      color: #ff6600;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .order-item {
+      background: #f7f7f7;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .btn-home {
+      display: inline-block;
+      background: #000;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <div class="logo">Signature Look</div>
+  </div>
+
+  <div class="success-box">
+    <h1>🎉 Order Placed Successfully!</h1>
+
+    <p class="order-id">Order ID: <span id="oid"></span></p>
+
+    <h2>Order Summary</h2>
+    <div id="orderList"></div>
+
+    <a href="shop.html" class="btn-home">Continue Shopping</a>
+  </div>
+
+  <script>
+    const order = JSON.parse(localStorage.getItem("lastOrder")) || null;
+
+    if (order) {
+      document.getElementById("oid").innerText = order.id;
+
+      let html = "";
+      order.items.forEach(i => {
+        html += `<div class="order-item">${i.name} — ₹${i.price} × ${i.quantity}</div>`;
+      });
+
+      document.getElementById("orderList").innerHTML = html;
+    }
+  </script>
+
+  <div class="footer">
+    © 2025 Signature Look — All Rights Reserved
+  </div>
+
+</body>
+</html>

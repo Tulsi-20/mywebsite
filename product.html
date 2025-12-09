@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product — Signature Look</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="header">
+    <div class="logo">Signature Look</div>
+    <div class="nav">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="wishlist.html" class="icon-link">❤️ <span id="wishCount" class="count-badge">0</span></a>
+      <a href="cart.html" class="icon-link">🛒 <span id="cartCount" class="count-badge">0</span></a>
+    </div>
+  </div>
+
+  <div class="container product-box">
+    <img id="pImg" class="main-img" src="img/default.jpg" alt="Product">
+    <div class="product-details">
+      <h1 id="pName">Product Name</h1>
+      <p class="price" id="pPrice">₹0</p>
+      <button class="btn" id="addCartBtn">Add to Cart</button>
+      <button class="btn" id="buyNowBtn">Buy Now</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    © 2025 Signature Look — All Rights Reserved
+  </div>
+
+  <script>
+    // Read product info from URL
+    const params = new URLSearchParams(window.location.search);
+    const img = params.get("img");
+    const name = params.get("name");
+    const price = Number(params.get("price"));
+
+    // Update page
+    if(img) document.getElementById("pImg").src = img;
+    if(name) document.getElementById("pName").innerText = name;
+    if(price) document.getElementById("pPrice").innerText = "₹" + price;
+
+    // Add to Cart button
+    document.getElementById("addCartBtn").addEventListener("click", () => {
+      let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+      cart.push({img, name, price, quantity: 1});
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert(name + " added to cart!");
+      window.location.href = "cart.html";
+
+    });
+
+    // Buy Now button
+    document.getElementById("buyNowBtn").addEventListener("click", () => {
+      localStorage.setItem("buyNow", JSON.stringify([{img, name, price, quantity: 1}]));
+      window.location.href = "checkout.html";
+    });
+  </script>
+
+</body>
+</html>

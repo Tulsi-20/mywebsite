@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wishlist — Signature Look</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="scrip.js" defer></script>
+
+  <style>
+    .wishlist-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      border: 1px solid #ddd;
+      padding: 12px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      background: #fff;
+    }
+
+    .wishlist-img {
+      width: 90px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .remove-btn {
+      background: red;
+      color: white;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .remove-btn:hover {
+      background: darkred;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">Signature Look</div>
+
+  <div class="nav">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+
+    <a href="wishlist.html" class="icon-link">
+      ❤️ <span id="wishCount" class="count-badge">0</span>
+    </a>
+
+    <a href="cart.html" class="icon-link">
+      🛒 <span id="cartCount" class="count-badge">0</span>
+    </a>
+  </div>
+</div>
+
+<!-- WISHLIST -->
+<div class="container">
+  <h2>Your Wishlist</h2>
+  <div id="wishlistBox"></div>
+</div>
+
+<div class="footer">
+  © 2025 Signature Look
+</div>
+
+<script>
+  function loadWishlist() {
+    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    let html = "";
+
+    wishlist.forEach((item, index) => {
+      html += `
+        <div class="wishlist-item">
+          <img src="${item.img}" class="wishlist-img">
+          <div>
+            <h3>${item.name}</h3>
+            <p>₹${item.price}</p>
+          </div>
+
+          <button class="remove-btn" onclick="removeWishlist(${index})">
+            Remove
+          </button>
+        </div>
+      `;
+    });
+
+    document.getElementById("wishlistBox").innerHTML = html;
+  }
+
+  function removeWishlist(i) {
+    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    wishlist.splice(i, 1);
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    loadWishlist();       // Refresh list
+    updateWishCount();    // Update top icon count
+  }
+
+  // Load at start
+  loadWishlist();
+</script>
+
+</body>
+</html>

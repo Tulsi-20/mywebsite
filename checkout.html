@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout — Signature Look</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ACTIVE NAV HIGHLIGHT */
+    .nav a.active {
+      color: #ff6600;
+      font-weight: bold;
+    }
+
+    /* Page Container */
+    .checkout-box {
+      max-width: 700px;
+      margin: 30px auto;
+      padding: 25px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background: #fff;
+    }
+
+    /* Inputs */
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    textarea {
+      height: 120px;
+      resize: none;
+    }
+
+    #checkoutList p {
+      background: #f7f7f7;
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      font-size: 17px;
+    }
+  </style>
+  
+  <script src="scrip.js" defer></script>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">Signature Look</div>
+
+    <div class="nav">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+
+      <a href="wishlist.html" class="icon-link">
+        ❤️ <span id="wishCount" class="count-badge">0</span>
+      </a>
+
+      <a href="cart.html" class="icon-link">
+        🛒 <span id="cartCount" class="count-badge">0</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Checkout Section -->
+  <div class="checkout-box">
+    <h1>Checkout</h1>
+    <h2>Your Order</h2>
+
+    <div id="checkoutList"></div>
+
+    <hr style="margin: 25px 0;">
+
+    <h2>Delivery Details</h2>
+    <input id="cname" placeholder="Full Name"><br><br>
+    <input id="cphone" placeholder="Phone Number"><br><br>
+    <textarea id="caddress" placeholder="Full Address"></textarea><br><br>
+
+    <button class="btn" onclick="placeOrder()">Place Order</button>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    © 2025 Signature Look — All Rights Reserved
+  </div>
+
+  <!-- Cart Display Script -->
+  <script>
+    let cart = JSON.parse(localStorage.getItem("cart")) 
+            || JSON.parse(localStorage.getItem("buyNow")) 
+            || [];
+
+    let html = "";
+
+    cart.forEach(i => {
+      html += `<p>${i.name} — ₹${i.price} × ${i.quantity}</p>`;
+    });
+
+    document.getElementById("checkoutList").innerHTML = html;
+  </script>
+
+</body>
+</html>
